@@ -56,8 +56,7 @@ let modules = new enmap();
 let commands = new enmap();
 
 // Import files
-const config = require('./config.json');
-client.config = config;
+client.config = require('./config.json');
 
 // Import functions
 const log = require('./log.js');
@@ -65,15 +64,15 @@ const log = require('./log.js');
 // Variables
 
 // Pre-Load Scripts
-fs.readdir('./preload/', (err, files) => {
+fs.readdir(client.config.directories.preload, (err, files) => {
     if (err) {
-        log('e', `Failed to read directory ./preload/: ${err}`, true, true);
+        log('e', `Failed to read directory ${client.config.directories.preload}: ${err}`, true, true);
     }
     files.forEach((file) => {
         if (!file.endsWith('.js')) {return;}
         let name = file.split('.')[0];
         log('i', `Loading pre-load script ${name}`);
-        preload.set(name, require(`./preload/${file}`));
+        preload.set(name, require(`${client.config.directories.preload}${file}`));
     });
 });
 
@@ -84,36 +83,36 @@ scripts.forEach((script) => {
 });
 
 // Load
-fs.readdir('./events/', (err, files) => {
+fs.readdir(client.config.directories.events, (err, files) => {
     if (err) {
-        log('e', `Failed to read directory ./events/: ${err}`, true, true);
+        log('e', `Failed to read directory ${client.config.directories.events}: ${err}`, true, true);
     }
     files.forEach((file) => {
         if (!file.endsWith('.js')) {return;}
         let name = file.split('.')[0];
         log('i', `Loading event ${name}`);
-        events.set(name, require(`./events/${file}`));
+        events.set(name, require(`${client.config.directories.events}${file}`));
     });
 });
-fs.readdir('./commands/', (err, files) => {
+fs.readdir(client.config.directories.commands, (err, files) => {
     if (err) {
-        log('e', `Failed to read directory ./events/: ${err}`, true, true);
+        log('e', `Failed to read directory ${client.config.directories.commands}: ${err}`, true, true);
     }
     files.forEach((file) => {
         if (!file.endsWith('.js')) {return;}
         let name = file.split('.')[0];
         log('i', `Loading command ${name}`);
-        commands.set(name, require(`./commands/${file}`));
+        commands.set(name, require(`${client.config.directories.commands}${file}`));
     });
 });
-fs.readdir('./modules/', (err, files) => {
+fs.readdir(client.config.directories.modules, (err, files) => {
     if (err) {
-        log('e', `Failed to read directory ./modules/: ${err}`, true, true);
+        log('e', `Failed to read directory ${client.config.directories.modules}: ${err}`, true, true);
     }
     files.forEach((file) => {
         if (!file.endsWith('.js')) {return;}
         let name = file.split('.')[0];
         log('i', `Loading module ${name}`);
-        modules.set(name, require(`./modules/${file}`));
+        modules.set(name, require(`${client.config.directories.modules}${file}`));
     });
 });

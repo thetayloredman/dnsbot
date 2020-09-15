@@ -32,15 +32,15 @@
  */
 
 // Modules
-const discord = require("discord.js")
-const enmap = require("enmap")
-const chalk = require("chalk")
-const express = require("express")
-const moment = require("moment")
-const _ = require("lodash")
-const fs = require("fs")
-const http = require("http")
-const https = require("https")
+const discord = require('discord.js');
+const enmap = require('enmap');
+const chalk = require('chalk');
+const express = require('express');
+const moment = require('moment');
+const _ = require('lodash');
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
 
 // Initialize client
 let client = new discord.Client();

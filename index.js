@@ -56,7 +56,7 @@ let modules = new enmap();
 let commands = new enmap();
 
 // Import files
-const config = require('config.json');
+const config = require('./config.json');
 client.config = config;
 
 // Import functions

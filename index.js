@@ -113,3 +113,6 @@ client.on('message', (message) => {
     let commandrun = commands.get(command);
     commandrun.run(client, message, args);
 });
+
+// Log in
+client.login(client.config.token);

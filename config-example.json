@@ -1,0 +1,8 @@
+{
+    "directories": {
+        "commands": "./commands/",
+        "modules": "./modules/"
+    },
+    "prefix": "!",
+    "token": "bot-token-here"
+}

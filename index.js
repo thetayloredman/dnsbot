@@ -89,5 +89,27 @@ fs.readdir(client.config.directories.modules, (err, files) => {
 
 // Ready event
 client.on('ready', () => {
-    log('i', `Client has logged in as ${client.user.tag} (${client.user.id}) with ${ client.users.cache.count} users.`);
+    log('i', `Client has logged in as ${client.user.tag} (${client.user.id}) with ${client.users.cache.count} users.`);
+});
+
+// Message event
+client.on('message', (message) => {
+    log('i', `Message in guild "${message.guild.name}" (${message.guild.id}) channel "${message.channel.name}" (${message.channel.id}): "${message.content}" (${message.id})`);
+    let modulesTemp = [...modules.entries()];
+    modulesTemp.forEach((moduleEntry) => {
+        log('i', `Running module ${moduleEntry[1]} for message ${message.id}`);
+        moduleEntry[2].run();
+    });
+
+    // Command exit
+    if (!message.content.startsWith(client.config.prefix)) {return;}
+    let args = message.content.slice(client.config.prefix.length).split(/ +/g);
+    let command = args.shift();
+    if (!commands.get(command)) {
+        message.reply('Unknown command!');
+        return log('i', `User ${message.author.tag} tried to run an unknown command: "${command}".`);
+    }
+    log('i', `Running command${command} for user ${message.author.tag}`);
+    let commandrun = commands.get(command);
+    commandrun.run(client, message, args);
 });

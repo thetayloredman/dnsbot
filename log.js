@@ -73,3 +73,6 @@ function log(type, message, stack = false, critical = false) {
         }
     }
 }
+
+// Export
+module.exports = log;

@@ -46,3 +46,10 @@ const https = require('https');
 let client = new discord.Client();
 
 // Databases
+let logging = new enmap({ name: 'logging' });
+let ranks = new enmap({ name: 'ranks' });
+
+// Import files
+const log = require("./log.js")
+
+// Variables

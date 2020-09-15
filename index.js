@@ -49,7 +49,71 @@ let client = new discord.Client();
 let logging = new enmap({ name: 'logging' });
 let ranks = new enmap({ name: 'ranks' });
 
+// Caches and scripts
+let preload = new enmap();
+let events = new enmap();
+let modules = new enmap();
+let commands = new enmap();
+
 // Import files
+const config = require('config.json');
+client.config = config;
+
+// Import functions
 const log = require('./log.js');
 
 // Variables
+
+// Pre-Load Scripts
+fs.readdir('./preload/', (err, files) => {
+    if (err) {
+        log('e', `Failed to read directory ./preload/: ${err}`, true, true);
+    }
+    files.forEach((file) => {
+        if (!file.endsWith('.js')) {return;}
+        let name = file.split('.')[0];
+        log('i', `Loading pre-load script ${name}`);
+        preload.set(name, require(`./preload/${file}`));
+    });
+});
+
+let scripts = [...preload.entries()];
+scripts.forEach((script) => {
+    log('i', `Running pre-load script ${script[0]}`);
+    script[1].run();
+});
+
+// Load
+fs.readdir('./events/', (err, files) => {
+    if (err) {
+        log('e', `Failed to read directory ./events/: ${err}`, true, true);
+    }
+    files.forEach((file) => {
+        if (!file.endsWith('.js')) {return;}
+        let name = file.split('.')[0];
+        log('i', `Loading event ${name}`);
+        events.set(name, require(`./events/${file}`));
+    });
+});
+fs.readdir('./commands/', (err, files) => {
+    if (err) {
+        log('e', `Failed to read directory ./events/: ${err}`, true, true);
+    }
+    files.forEach((file) => {
+        if (!file.endsWith('.js')) {return;}
+        let name = file.split('.')[0];
+        log('i', `Loading command ${name}`);
+        commands.set(name, require(`./commands/${file}`));
+    });
+});
+fs.readdir('./modules/', (err, files) => {
+    if (err) {
+        log('e', `Failed to read directory ./modules/: ${err}`, true, true);
+    }
+    files.forEach((file) => {
+        if (!file.endsWith('.js')) {return;}
+        let name = file.split('.')[0];
+        log('i', `Loading module ${name}`);
+        modules.set(name, require(`./modules/${file}`))
+    });
+});

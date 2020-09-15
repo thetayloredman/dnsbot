@@ -1,0 +1,108 @@
+{
+    "env": {
+        "commonjs": true,
+        "es2021": true,
+        "node": true
+    },
+    "parser": "babel-eslint",
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 12
+    },
+    "rules": {
+        "indent": [
+            "warn",
+            4
+        ],
+        "linebreak-style": [
+            "warn",
+            "unix"
+        ],
+        "quotes": [
+            "warn",
+            "single"
+        ],
+        "semi": [
+            "warn",
+            "always"
+        ],
+        "no-unused-vars": [
+            "off"
+        ],
+        "no-compare-neg-zero": [
+            "warn"
+        ],
+        "no-dupe-args": [
+            "warn"
+        ],
+        "no-dupe-else-if": [
+            "warn"
+        ],
+        "no-invalid-regexp": [
+            "warn"
+        ],
+        "no-loss-of-precision": [
+            "warn"
+        ],
+        "curly": [
+            "warn"
+        ],
+        "dot-notation": [
+            "warn"
+        ],
+        "eqeqeq": [
+            "warn"
+        ],
+        "no-multi-str": [
+            "warn"
+        ],
+        "no-new-func": [
+            "warn"
+        ],
+        "no-new-wrappers": [
+            "warn"
+        ],
+        "no-use-before-define": [
+            "warn"
+        ],
+        "array-bracket-newline": [
+            "warn"
+        ],
+        "array-element-newline": [
+            "warn"
+        ],
+        "camelcase": [
+            "warn"
+        ],
+        "comma-dangle": [
+            "warn"
+        ],
+        "no-var": [
+            "warn"
+        ],
+        "no-template-curly-in-string": [
+            "warn"
+        ],
+        "no-useless-concat": [
+            "warn"
+        ],
+        "prefer-template": [
+            "warn"
+        ],
+        "prefer-arrow-callback": [
+            "warn"
+        ],
+        "valid-typeof": [
+            "warn"
+        ],
+        "no-console": [
+            "off"
+        ],
+        "no-unexpected-multiline": [
+            "off"
+        ],
+        "one-var-declaration-per-line": [
+            "warn"
+        ]
+    }
+}

@@ -46,6 +46,30 @@ const https = require('https');
 function log(type, message, stack = false, critical = false) {
     switch (type) {
         case 'i':
-            
+            console.log(`${chalk.blue.bold('INFO')} ${chalk.blue(message)}`);
+            break;
+        case 'w':
+            console.log(`${chalk.yellow.bold('WARN')} ${chalk.yellow(message)}`);
+            break;
+        case 'e':
+            console.log(`${chalk.red.bold('ERR')} ${chalk.red(message)}`);
+            break;
+        default:
+            log('i', message); // Recursively call self and log with info
+            break;
+    }
+    if (type === 'e') {
+        // Err specifics
+        if (stack) {
+            let stack = new Error().stack.split('\n');
+            stack.shift;
+            stack.forEach((item) => {
+                console.log(`${chalk.red.bold('ERR')} ${chalk.gray(item)}`);
+            });
+        }
+        if (critical) {
+            console.log(`${chalk.red.bold('ERR')} ${chalk.redBright('Process exiting due to error set as critical. There is likely additional logging output above.')}`);
+            process.exit(1);
+        }
     }
 }

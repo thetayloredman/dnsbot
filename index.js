@@ -63,37 +63,7 @@ const log = require('./log.js');
 
 // Variables
 
-// Pre-Load Scripts
-fs.readdir(client.config.directories.preload, (err, files) => {
-    if (err) {
-        log('e', `Failed to read directory ${client.config.directories.preload}: ${err}`, true, true);
-    }
-    files.forEach((file) => {
-        if (!file.endsWith('.js')) {return;}
-        let name = file.split('.')[0];
-        log('i', `Loading pre-load script ${name}`);
-        preload.set(name, require(`${client.config.directories.preload}${file}`));
-    });
-});
-
-let scripts = [...preload.entries()];
-scripts.forEach((script) => {
-    log('i', `Running pre-load script ${script[0]}`);
-    script[1].run();
-});
-
 // Load
-fs.readdir(client.config.directories.events, (err, files) => {
-    if (err) {
-        log('e', `Failed to read directory ${client.config.directories.events}: ${err}`, true, true);
-    }
-    files.forEach((file) => {
-        if (!file.endsWith('.js')) {return;}
-        let name = file.split('.')[0];
-        log('i', `Loading event ${name}`);
-        events.set(name, require(`${client.config.directories.events}${file}`));
-    });
-});
 fs.readdir(client.config.directories.commands, (err, files) => {
     if (err) {
         log('e', `Failed to read directory ${client.config.directories.commands}: ${err}`, true, true);
@@ -115,4 +85,9 @@ fs.readdir(client.config.directories.modules, (err, files) => {
         log('i', `Loading module ${name}`);
         modules.set(name, require(`${client.config.directories.modules}${file}`));
     });
+});
+
+// Ready event
+client.on('ready', () => {
+    log('i', `Client has logged in as ${client.user.tag} (${client.user.id}) with ${ client.users.cache.count} users.`);
 });

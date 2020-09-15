@@ -2,7 +2,8 @@
     "env": {
         "commonjs": true,
         "es2021": true,
-        "node": true
+        "node": true,
+        "browser": true
     },
     "parser": "babel-eslint",
     "extends": "eslint:recommended",
@@ -12,7 +13,10 @@
     "rules": {
         "indent": [
             "warn",
-            4
+            4,
+            {
+                "SwitchCase": 1
+            }
         ],
         "linebreak-style": [
             "warn",

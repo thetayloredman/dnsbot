@@ -114,6 +114,6 @@ fs.readdir('./modules/', (err, files) => {
         if (!file.endsWith('.js')) {return;}
         let name = file.split('.')[0];
         log('i', `Loading module ${name}`);
-        modules.set(name, require(`./modules/${file}`))
+        modules.set(name, require(`./modules/${file}`));
     });
 });

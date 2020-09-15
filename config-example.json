@@ -4,5 +4,6 @@
         "modules": "./modules/"
     },
     "prefix": "!",
-    "token": "bot-token-here"
+    "token": "bot-token-here",
+    "guild": "731940838967476336"
 }

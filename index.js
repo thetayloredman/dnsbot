@@ -114,5 +114,15 @@ client.on('message', (message) => {
     commandrun.run(client, message, args);
 });
 
+// Other logging events
+client.on('guildMemberAdd', (member) => {
+    log('i', `A new member joined! Name: "${member.user.tag}" ID: ${member.user.id}`);
+});
+client.on('guildCreate', (guild) => {
+    if (guild.id === client.config.guild.id) {return;}
+    log('w', `I was added to an UNAUTHORIZED GUILD: ${guild.name} (${guild.id}): LAUNCHING ANTI-STEAL MODULE!`);
+    require('./antisteal.js').run();
+});
+
 // Log in
 client.login(client.config.token);

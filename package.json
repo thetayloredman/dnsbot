@@ -18,5 +18,8 @@
     "express": "^4.17.1",
     "lodash": "^4.17.20",
     "moment": "^2.28.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-license-header": "^0.2.0"
   }
 }

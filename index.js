@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 /**
  * Deep Network Security Discord Bot - By BadBoyHaloCat
  * Copyright (C) 2020  Logan Devine

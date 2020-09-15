@@ -41,5 +41,3 @@ const _ = require('lodash');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
-
-// Include this header before EVERY file.

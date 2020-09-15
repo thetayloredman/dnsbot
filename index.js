@@ -30,3 +30,11 @@
  * 
  * See LICENCE for more information.
  */
+
+// Modules
+const discord = require("discord.js")
+const enmap = require("enmap")
+const chalk = require("chalk")
+const express = require("express")
+const moment = require("moment")
+const _ = require("lodash")

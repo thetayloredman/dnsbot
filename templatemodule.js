@@ -43,6 +43,6 @@ const http = require('http');
 const https = require('https');
 
 // Main runner
-exports.run = (client, message, args, log) => {
+exports.run = (client, message, log) => {
     // Module code
-}
+};

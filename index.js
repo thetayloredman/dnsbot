@@ -72,7 +72,7 @@ fs.readdir(client.config.directories.commands, (err, files) => {
         let name = file.split('.')[0];
         log('i', `Loading command ${name}`);
         client.commands.set(name, require(`${client.config.directories.commands}${file}`));
-        client.commandConfig.set(`commands`, require(`${client.config.directories.commands}${file}`).config, name)
+        client.commandConfig.set('commands', require(`${client.config.directories.commands}${file}`).config, name);
     });
 });
 fs.readdir(client.config.directories.modules, (err, files) => {
@@ -99,7 +99,7 @@ client.on('message', (message) => {
     let modulesTemp = [...client.modules.entries()];
     modulesTemp.forEach((moduleEntry) => {
         log('i', `Running module ${moduleEntry[1]} for message ${message.id}`);
-        moduleEntry[2].run(client, message, args, log);
+        moduleEntry[2].run(client, message, log);
     });
 
     // Command exit

@@ -45,9 +45,9 @@ const https = require('https');
 // Main runner
 exports.run = (client, message, args, log) => {
     // Command code
-}
+};
 
 // Config
 exports.config = {
     description: 'What a nice command description!'
-}
+};

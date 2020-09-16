@@ -50,8 +50,6 @@ let logging = new enmap({ name: 'logging' });
 let ranks = new enmap({ name: 'ranks' });
 
 // Caches and scripts
-let preload = new enmap();
-let events = new enmap();
 let modules = new enmap();
 let commands = new enmap();
 

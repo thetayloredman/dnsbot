@@ -94,6 +94,7 @@ client.on('ready', () => {
 
 // Message event
 client.on('message', (message) => {
+    if (message.author.bot || message.channel.type === 'dm') {return;}
     log('i', `Message in guild "${message.guild.name}" (${message.guild.id}) channel "${message.channel.name}" (${message.channel.id}): "${message.content}" (${message.id})`);
     let modulesTemp = [...modules.entries()];
     modulesTemp.forEach((moduleEntry) => {

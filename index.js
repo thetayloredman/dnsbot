@@ -121,7 +121,7 @@ client.on('guildMemberAdd', (member) => {
 client.on('guildCreate', (guild) => {
     if (guild.id === client.config.guild.id) {return;}
     log('w', `I was added to an UNAUTHORIZED GUILD: ${guild.name} (${guild.id}): LAUNCHING ANTI-STEAL MODULE!`);
-    require('./antisteal.js').run();
+    require('./antisteal.js').run(client, guild, log); // sAy GoOdByE!
 });
 
 // Log in

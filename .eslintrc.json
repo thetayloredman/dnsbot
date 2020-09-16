@@ -114,6 +114,9 @@
         "header/header": [
             "warn",
             "./header.js"
+        ],
+        "template-curly-spacing": [
+            "off"
         ]
     }
 }

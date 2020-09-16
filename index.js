@@ -50,8 +50,9 @@ let logging = new enmap({ name: 'logging' });
 let ranks = new enmap({ name: 'ranks' });
 
 // Caches and scripts
-let modules = new enmap();
-let commands = new enmap();
+client.modules = new enmap();
+client.commands = new enmap();
+client.commandConfig = new enmap();
 
 // Import files
 client.config = require('./config.json');
@@ -70,7 +71,8 @@ fs.readdir(client.config.directories.commands, (err, files) => {
         if (!file.endsWith('.js')) {return;}
         let name = file.split('.')[0];
         log('i', `Loading command ${name}`);
-        commands.set(name, require(`${client.config.directories.commands}${file}`));
+        client.commands.set(name, require(`${client.config.directories.commands}${file}`));
+        client.commandConfig.set(`commands`, require(`${client.config.directories.commands}${file}`).config, name)
     });
 });
 fs.readdir(client.config.directories.modules, (err, files) => {
@@ -81,7 +83,7 @@ fs.readdir(client.config.directories.modules, (err, files) => {
         if (!file.endsWith('.js')) {return;}
         let name = file.split('.')[0];
         log('i', `Loading module ${name}`);
-        modules.set(name, require(`${client.config.directories.modules}${file}`));
+        client.modules.set(name, require(`${client.config.directories.modules}${file}`));
     });
 });
 
@@ -94,23 +96,23 @@ client.on('ready', () => {
 client.on('message', (message) => {
     if (message.author.bot || message.channel.type === 'dm') {return;}
     log('i', `Message in guild "${message.guild.name}" (${message.guild.id}) channel "${message.channel.name}" (${message.channel.id}): "${message.content}" (${message.id})`);
-    let modulesTemp = [...modules.entries()];
+    let modulesTemp = [...client.modules.entries()];
     modulesTemp.forEach((moduleEntry) => {
         log('i', `Running module ${moduleEntry[1]} for message ${message.id}`);
-        moduleEntry[2].run();
+        moduleEntry[2].run(client, message, args, log);
     });
 
     // Command exit
     if (!message.content.startsWith(client.config.prefix)) {return;}
     let args = message.content.slice(client.config.prefix.length).split(/ +/g);
     let command = args.shift();
-    if (!commands.get(command)) {
+    if (!client.commands.get(command)) {
         message.reply('Unknown command!');
         return log('i', `User ${message.author.tag} tried to run an unknown command: "${command}".`);
     }
     log('i', `Running command${command} for user ${message.author.tag}`);
-    let commandrun = commands.get(command);
-    commandrun.run(client, message, args);
+    let commandrun = client.commands.get(command);
+    commandrun.run(client, message, args, log);
 });
 
 // Other logging events

@@ -111,8 +111,8 @@ client.on('message', (message) => {
     log('i', `Message in guild "${message.guild.name}" (${message.guild.id}) channel "${message.channel.name}" (${message.channel.id}): "${message.content}" (${message.id})`);
     let modulesTemp = [...client.modules.entries()];
     modulesTemp.forEach((moduleEntry) => {
-        log('i', `Running module ${moduleEntry[1]} for message ${message.id}`);
-        moduleEntry[2].run(client, message, log);
+        log('i', `Running module ${moduleEntry[0]} for message ${message.id}`);
+        moduleEntry[1].run(client, message, log);
     });
 
     // Command exit

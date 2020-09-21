@@ -21,12 +21,9 @@ run mkdir $BUILD_DIR; # Make build dir
 bcd $BUILD_DIR; # CD there
 run pwd; # Log PWD
 bcd ..; # CD back
-run rsync -aP --exclude 'node_modules/' ./* $BUILD_DIR; # Copy files
+run rsync -aP ./* $BUILD_DIR; # Copy files
 bcd $BUILD_DIR; # CD in
 run rm -r $BUILD_DIR; # Remove dupe BUILD_DIR
-
-# Install dependencies
-run npm install;
 
 run npm run minify; # Minify
 

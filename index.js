@@ -34,6 +34,7 @@
 // Modules
 const discord = require('discord.js');
 const enmap = require('enmap');
+const database = require('@replit/database');
 const chalk = require('chalk');
 const express = require('express');
 const moment = require('moment');
@@ -46,8 +47,8 @@ const https = require('https');
 let client = new discord.Client();
 
 // Databases
-let logging = new enmap({ name: 'logging' });
-let ranks = new enmap({ name: 'ranks' });
+let logging = new database();
+let ranks = new database();
 
 // Caches and scripts
 client.modules = new enmap();

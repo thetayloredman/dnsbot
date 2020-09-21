@@ -6,7 +6,8 @@
   "scripts": {
     "build": "chmod u+x ./build.sh; . ./build.sh;",
     "babel": "babel . -d ./babel/;",
-    "minify": "minify . -d ./minify/;"
+    "minify": "minify . -d ./minify/;",
+    "start": "chmod u+x ./start.sh; . ./start.sh;"
   },
   "author": "BadBoyHaloCat",
   "license": "ISC",

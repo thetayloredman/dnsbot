@@ -42,6 +42,21 @@ const _ = require('lodash');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
+const dotenv = require('dotenv')
+
+// Import functions
+const log = require('./log.js');
+
+// ENV
+dotenv.config({ path: __dirname + '/.env' });
+
+// Validate ENV
+if (!process.env.token) {
+    log('e', 'Environment variables were invalid. You need to provide "token".', true, true)
+}
+
+// Web init
+require('./web.js')()
 
 // Initialize client
 let client = new discord.Client();
@@ -57,9 +72,6 @@ client.commandConfig = new enmap();
 
 // Import files
 client.config = require('./config.json');
-
-// Import functions
-const log = require('./log.js');
 
 // Variables
 

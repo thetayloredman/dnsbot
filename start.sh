@@ -1,18 +1,10 @@
 #!/bin/bash
 
-run() { # Executer
-    echo "> $@" && echo "$($@)";
-}
-bcd() { # Patched CD
-    run cd $@;
-    cd $@;
-}
-
 # Build
-run npm run build;
+npm run build;
 
 # CD in
-bcd build/;
+cd build/;
 
 # Launch
 node index.js;

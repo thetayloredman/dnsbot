@@ -41,6 +41,8 @@ del 'header.js';
 
 # Exit and echo out
 echo "Build complete."
+echo "Build shasum: --- EVALULATING ---"
 SHASUM=$(find . -type f \( -exec sha1sum "$PWD"/{} \; \) | sha1sum)
-echo Build shasum: $SHASUM
+printf "\033[1A"
+echo -e "\rBuild shasum: \"$SHASUM\""
 exit 0;

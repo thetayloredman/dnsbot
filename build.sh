@@ -45,5 +45,5 @@ run npm install;
 
 # Exit and echo out
 echo "Build complete."
-echo "Build SHA1: $(find . -type f \( -exec sha1sum "$PWD"/{} \; \) | sha1sum)"
+echo 'Build SHA1: "$(find . -type f \( -exec sha1sum "$PWD"/{} \; \) | sha1sum)"'
 exit 0;

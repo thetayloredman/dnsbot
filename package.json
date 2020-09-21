@@ -1,19 +1,11 @@
 {
   "name": "dnsbot",
   "version": "1.0.0",
-  "description": "Deep network security's Discord bot",
+  "description": "",
   "main": "index.js",
-  "scripts": {
-    "build": "chmod u+x ./build.sh; . ./build.sh;",
-    "babel": "babel . -d ./babel/;",
-    "minify": "minify . -d ./minify/;",
-    "start": "chmod u+x ./start.sh; . ./start.sh;"
-  },
-  "author": "BadBoyHaloCat",
-  "license": "ISC",
   "dependencies": {
-    "@replit/database": "^2.0.0",
     "babel-eslint": "^10.1.0",
+    "babel-minify": "^0.5.1",
     "chalk": "^4.1.0",
     "discord.js": "^12.3.1",
     "enmap": "^5.8.0",
@@ -23,9 +15,19 @@
     "lodash": "^4.17.20",
     "moment": "^2.28.0"
   },
-  "devDependencies": {
-    "@babel/cli": "^7.11.6",
-    "@babel/core": "^7.11.6",
-    "babel-minify": "^0.5.1"
-  }
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thetayloredman/dnsbot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thetayloredman/dnsbot/issues"
+  },
+  "homepage": "https://github.com/thetayloredman/dnsbot#readme"
 }

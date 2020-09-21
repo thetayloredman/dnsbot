@@ -122,4 +122,4 @@ client.on('guildMemberAdd', (member) => {
 });
 
 // Log in
-client.login(client.config.token);
+client.login(process.env.token);

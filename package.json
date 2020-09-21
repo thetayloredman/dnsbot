@@ -4,11 +4,14 @@
   "description": "Deep network security's Discord bot",
   "main": "index.js",
   "scripts": {
-    "build": ""
+    "build": "chmod u+x ./build.sh; . ./build.sh;",
+    "babel": "babel . -d ./babel/;",
+    "minify": "minify . -d ./minify/;"
   },
   "author": "BadBoyHaloCat",
   "license": "ISC",
   "dependencies": {
+    "@replit/database": "^2.0.0",
     "babel-eslint": "^10.1.0",
     "chalk": "^4.1.0",
     "discord.js": "^12.3.1",
@@ -18,5 +21,10 @@
     "express": "^4.17.1",
     "lodash": "^4.17.20",
     "moment": "^2.28.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "babel-minify": "^0.5.1"
   }
 }

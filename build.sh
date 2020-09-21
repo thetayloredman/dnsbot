@@ -44,5 +44,6 @@ run npm install;
 
 # Exit and echo out
 echo "Build complete."
-echo 'Build SHA1: "$(find . -type f \( -exec sha1sum "$PWD"/{} \; \) | sha1sum)"'
+SHASUM=$(find . -type f \( -exec sha1sum "$PWD"/{} \; \) | sha1sum)
+echo Build shasum: $SHASUM
 exit 0;

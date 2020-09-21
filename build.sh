@@ -25,11 +25,11 @@ run rsync -aP --exclude 'node_modules/' ./* $BUILD_DIR; # Copy files
 bcd $BUILD_DIR; # CD in
 run rm -r $BUILD_DIR; # Remove dupe dir
 
-# Install dependencies
-run npm install;
-
 run npm run babel; # Babel
 run npm run minify; # Minify
+
+# Install dependencies
+run npm install;
 
 # Rm unneeded files
 del 'LICENCE';
@@ -45,4 +45,8 @@ echo "Build shasum: --- EVALULATING ---"
 SHASUM=$(find . -type f \( -exec sha1sum "$PWD"/{} \; \) | sha1sum)
 printf "\033[1A"
 echo -e "\rBuild shasum: \"$SHASUM\""
+
+# Log shasum
+echo $SHASUM >> '../shalog.txt';
+
 exit 0;

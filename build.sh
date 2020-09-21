@@ -14,7 +14,6 @@ del() {
     run rm $@;
 }
 
-clear;
 if [ -d "$BUILD_DIR" ]; then # Delete old build
     run rm -r $BUILD_DIR
 fi;

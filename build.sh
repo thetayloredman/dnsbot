@@ -24,6 +24,10 @@ bcd ..; # CD back
 run rsync -aP --exclude 'node_modules/' ./* $BUILD_DIR; # Copy files
 bcd $BUILD_DIR; # CD in
 run rm -r $BUILD_DIR; # Remove dupe dir
+
+# Install dependencies
+run npm install;
+
 run npm run babel; # Babel
 run npm run minify; # Minify
 
@@ -34,9 +38,6 @@ del 'templatemodule.js';
 del 'config-example.json';
 del 'build.sh';
 del 'header.js';
-
-# Install dependencies
-run npm install;
 
 # Exit and echo out
 echo "Build complete."

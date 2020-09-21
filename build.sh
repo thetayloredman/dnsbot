@@ -25,11 +25,7 @@ run rsync -aP --exclude 'node_modules/' ./* $BUILD_DIR; # Copy files
 bcd $BUILD_DIR; # CD in
 run rm -r $BUILD_DIR; # Remove dupe dir
 run npm run babel; # Babel
-run rsync -aP ./babel/* .; # Move stuff in
-run rm -r ./babel/; # Rm temp dir
 run npm run minify; # Minify
-run rsync -aP ./minify/* .; # Move stuff in
-run rm -r ./minify/; # Rm temp dir
 
 # Rm unneeded files
 del 'LICENCE';

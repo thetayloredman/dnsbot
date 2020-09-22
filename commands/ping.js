@@ -34,7 +34,6 @@
 // Modules
 const discord = require('discord.js');
 const enmap = require('enmap');
-const database = require('@replit/database');
 const chalk = require('chalk');
 const express = require('express');
 const moment = require('moment');
@@ -42,16 +41,17 @@ const _ = require('lodash');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
-const dotenv = require('dotenv');
 
-// Import functions
-const log = require('./log.js');
-
-module.exports = () => {
-    // Open server
-    const server = http.createServer((req, res) => {
-        res.end('OK');
-        log('i', 'PINGHOST: Got ping!');
+// Main runner
+exports.run = (client, message, args, log) => {
+    message.reply('Ping?').then((pingMessage) => {
+        let ping = pingMessage.createdTimestamp - message.createdTimestamp;
+        log('i', `Ping was ${  ping  } ms`);
+        pingMessage.edit(`<@${message.author.id}>, Pong! Ping was \`${ping}\` ms. Websocket ping was \`${client.ws.ping}\` ms.`);
     });
-    server.listen('8080');
+};
+
+// Config
+exports.config = {
+    description: 'Check the bot\'s ping!'
 };

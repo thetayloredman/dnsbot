@@ -19,12 +19,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "npm run build; cd ./build/; node index.js",
-    "build": "chmod u+x ./build.sh; . ./build.sh;",
-    "minify": "minify . -d . --ignore node_modules/;",
-    "dev": "npm install; node index.js;",
-    "force": "node index.js;",
-    "quick": "chmod u+x ./quickbuild.sh; . ./quickbuild.sh; cd ./build/; node index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",

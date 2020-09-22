@@ -44,14 +44,47 @@ const http = require('http');
 const https = require('https');
 const dotenv = require('dotenv');
 
-// Import functions
-const log = require('./log.js');
+// Main runner
+exports.run = (client, log) => {
+    log('i', 'Running heartbeat!');
 
-module.exports = () => {
-    // Open server
-    const server = http.createServer((req, res) => {
-        res.end('OK');
-        log('i', 'PINGHOST: Got ping!');
+    // Ensure no unauthorized guilds
+    client.guilds.cache.forEach((guild) => {
+        if (guild.id !== client.config.guild) {
+            log('w', `Leaving guild ${  guild.name  }(${  guild.id  })...`);
+            guild.leave();
+        }
     });
-    server.listen('8080');
+
+    client.guilds.cache.get(client.config.guild).members.cache.forEach((member) => {
+        if (member.roles.cache.has(client.config.staffRole)) {
+            let hasRole = false;
+            client.config.staffRoles.forEach((role) => {
+                if (hasRole) {
+                    return;
+                }
+                if (member.roles.cache.has(role)) {
+                    hasRole = true;
+                }
+            });
+            if (!hasRole) {
+                log('i', 'Took role @Staff from ' + member.user.tag)
+                member.roles.remove(client.config.staffRole, "AutoStaffRole Removal");
+            }
+        } else {
+            let hasRole = false;
+            client.config.staffRoles.forEach((role) => {
+                if (hasRole) {
+                    return;
+                }
+                if (member.roles.cache.has(role)) {
+                    hasRole = true;
+                }
+            });
+            if (hasRole) {
+                log('i', 'Added role @Staff for ' + member.user.tag)
+                member.roles.add(client.config.staffRole, 'AutoStaffRole Addition');
+            }
+        }
+    });
 };

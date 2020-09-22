@@ -1,8 +1,0 @@
-{
-    "directories": {
-        "commands": "./commands/",
-        "modules": "./modules/"
-    },
-    "prefix": "!",
-    "guild": "731940838967476336"
-}

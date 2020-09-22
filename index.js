@@ -42,21 +42,24 @@ const _ = require('lodash');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 
 // Import functions
 const log = require('./log.js');
+const heartbeat = require('./heartbeat.js');
 
 // ENV
-dotenv.config({ path: __dirname + '/.env' });
+dotenv.config({
+    path: `${__dirname  }/.env`
+});
 
 // Validate ENV
 if (!process.env.token) {
-    log('e', 'Environment variables were invalid. You need to provide "token".', true, true)
+    log('e', 'Environment variables were invalid. You need to provide "token".', true, true);
 }
 
 // Web init
-require('./web.js')()
+require('./web.js')();
 
 // Initialize client
 let client = new discord.Client();
@@ -75,13 +78,20 @@ client.config = require('./config.json');
 
 // Variables
 
+// Heartbeat
+setInterval(() => {
+    heartbeat.run(client, log);
+}, client.config.heartbeatSeconds * 1000);
+
 // Load
 fs.readdir(client.config.directories.commands, (err, files) => {
     if (err) {
         log('e', `Failed to read directory ${client.config.directories.commands}: ${err}`, true, true);
     }
     files.forEach((file) => {
-        if (!file.endsWith('.js')) {return;}
+        if (!file.endsWith('.js')) {
+            return;
+        }
         let name = file.split('.')[0];
         log('i', `Loading command ${name}`);
         client.commands.set(name, require(`${client.config.directories.commands}${file}`));
@@ -93,7 +103,9 @@ fs.readdir(client.config.directories.modules, (err, files) => {
         log('e', `Failed to read directory ${client.config.directories.modules}: ${err}`, true, true);
     }
     files.forEach((file) => {
-        if (!file.endsWith('.js')) {return;}
+        if (!file.endsWith('.js')) {
+            return;
+        }
         let name = file.split('.')[0];
         log('i', `Loading module ${name}`);
         client.modules.set(name, require(`${client.config.directories.modules}${file}`));
@@ -102,12 +114,39 @@ fs.readdir(client.config.directories.modules, (err, files) => {
 
 // Ready event
 client.on('ready', () => {
-    log('i', `Client has logged in as ${client.user.tag} (${client.user.id}) with ${client.users.cache.count} users.`);
+    log('i', `Client has logged in as ${client.user.tag} (${client.user.id}) with ${client.users.cache.size} users.`);
+
+    client.user.setActivity(`bootup`, {
+        type: 'WATCHING'
+    });
+
+    heartbeat.run(client, log);
+
+    // Status reafreshes
+    let statusId = 0;
+    setInterval(() => {
+        if (!client.config.statusArray[statusId]) {
+            statusId = 0;
+        }
+        let status = client.config.statusArray[statusId];
+        let text = status[0];
+        client.config.statusFilters.forEach((filter) => {
+            text = eval(`text.replace(/${filter[0]}/g, ${eval(filter[1])})`);
+        });
+        let readable = status[1].toUpperCase() === "PLAYING" ? 'Playing' : status[1].toUpperCase() === "WATCHING" ? 'Watching' : status[1].toUpperCase() === 'LISTENING' ? 'Listening to' : 'Watching'
+        log('i', 'Setting status to "' + chalk.white(readable) + ' ' + chalk.white.bold(text) + '"')
+        client.user.setActivity(text, {
+            type: status[1]
+        });
+        statusId++;
+    }, client.config.statusSeconds * 1000);
 });
 
 // Message event
 client.on('message', (message) => {
-    if (message.author.bot || message.channel.type === 'dm') {return;}
+    if (message.author.bot || message.channel.type === 'dm') {
+        return;
+    }
     log('i', `Message in guild "${message.guild.name}" (${message.guild.id}) channel "${message.channel.name}" (${message.channel.id}): "${message.content}" (${message.id})`);
     let modulesTemp = [...client.modules.entries()];
     modulesTemp.forEach((moduleEntry) => {
@@ -116,14 +155,16 @@ client.on('message', (message) => {
     });
 
     // Command exit
-    if (!message.content.startsWith(client.config.prefix)) {return;}
+    if (!message.content.startsWith(client.config.prefix)) {
+        return;
+    }
     let args = message.content.slice(client.config.prefix.length).split(/ +/g);
     let command = args.shift();
     if (!client.commands.get(command)) {
         message.reply('Unknown command!');
         return log('i', `User ${message.author.tag} tried to run an unknown command: "${command}".`);
     }
-    log('i', `Running command${command} for user ${message.author.tag}`);
+    log('i', `Running command ${command} for user ${message.author.tag}`);
     let commandrun = client.commands.get(command);
     commandrun.run(client, message, args, log);
 });

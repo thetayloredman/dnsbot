@@ -66,7 +66,7 @@ let client = new discord.Client();
 
 // Databases
 let logging = new database();
-let ranks = new database();
+let permLevels = new database();
 
 // Caches and scripts
 client.modules = new enmap();

@@ -45,7 +45,7 @@ const https = require('https');
 const dotenv = require('dotenv');
 
 // Main runner
-exports.run = (client, log) => {
+exports.run = async (client, log) => {
     log('i', 'Running heartbeat!');
 
     // Ensure no unauthorized guilds

@@ -51,7 +51,7 @@ exports.run = async (client, log) => {
     // Ensure no unauthorized guilds
     client.guilds.cache.forEach((guild) => {
         if (guild.id !== client.config.guild) {
-            log('w', `Leaving guild ${  guild.name  }(${  guild.id  })...`);
+            log('w', `Leaving guild ${  guild.name  } (${  guild.id  })...`);
             guild.leave();
         }
     });
@@ -68,8 +68,8 @@ exports.run = async (client, log) => {
                 }
             });
             if (!hasRole) {
-                log('i', 'Took role @Staff from ' + member.user.tag)
-                member.roles.remove(client.config.staffRole, "AutoStaffRole Removal");
+                log('i', `Took role @Staff from ${  member.user.tag}`);
+                member.roles.remove(client.config.staffRole, 'AutoStaffRole Removal');
             }
         } else {
             let hasRole = false;
@@ -82,7 +82,7 @@ exports.run = async (client, log) => {
                 }
             });
             if (hasRole) {
-                log('i', 'Added role @Staff for ' + member.user.tag)
+                log('i', `Added role @Staff for ${  member.user.tag}`);
                 member.roles.add(client.config.staffRole, 'AutoStaffRole Addition');
             }
         }

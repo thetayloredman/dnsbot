@@ -19,7 +19,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "eslint": "eslint ."
   },
   "repository": {
     "type": "git",

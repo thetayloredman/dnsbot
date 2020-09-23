@@ -116,7 +116,7 @@ fs.readdir(client.config.directories.modules, (err, files) => {
 client.on('ready', () => {
     log('i', `Client has logged in as ${client.user.tag} (${client.user.id}) with ${client.users.cache.size} users.`);
 
-    client.user.setActivity(`bootup`, {
+    client.user.setActivity('bootup', {
         type: 'WATCHING'
     });
 
@@ -133,8 +133,8 @@ client.on('ready', () => {
         client.config.statusFilters.forEach((filter) => {
             text = eval(`text.replace(/${filter[0]}/g, ${eval(filter[1])})`);
         });
-        let readable = status[1].toUpperCase() === "PLAYING" ? 'Playing' : status[1].toUpperCase() === "WATCHING" ? 'Watching' : status[1].toUpperCase() === 'LISTENING' ? 'Listening to' : 'Watching'
-        log('i', 'Setting status to "' + chalk.white(readable) + ' ' + chalk.white.bold(text) + '"')
+        let readable = status[1].toUpperCase() === 'PLAYING' ? 'Playing' : status[1].toUpperCase() === 'WATCHING' ? 'Watching' : status[1].toUpperCase() === 'LISTENING' ? 'Listening to' : 'Watching';
+        log('i', `Setting status to "${  chalk.white(readable)  } ${  chalk.white.bold(text)  }"`);
         client.user.setActivity(text, {
             type: status[1]
         });

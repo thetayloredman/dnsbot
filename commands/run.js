@@ -124,13 +124,13 @@ exports.run = (client, message, args, log) => {
     code.shift();
     code.shift();
     code.pop();
-    code = code.join('\n')
+    code = code.join('\n');
 
     https.request({ host: 'emkc.org', path: '/api/v1/piston/execute', method: 'POST' }, (res) => {
         let data = '';
         res.on('data', (chunk) => {
             data += chunk;
-        })
+        });
         res.on('end', () => {
             data = JSON.parse(data);
             if (!data.ran) {

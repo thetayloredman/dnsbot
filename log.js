@@ -42,17 +42,24 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 
+// Timestamp
+function getTimestamp () {
+    let d = new Date(Date.now());
+    let output = `${d.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}/${d.getMonth().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}/${d.getFullYear().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})} ${d.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${d.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${d.getSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;
+    return output;
+}
+
 // Main function
-function log(type, message, stack = false, critical = false) {
+function log (type, message, stack = false, critical = false) {
     switch (type) {
         case 'i':
-            console.log(`${chalk.blue.bold('INFO')} ${chalk.blue(message)}`);
+            console.log(`${chalk.blue.bold(`[INFO ${getTimestamp()  }]`)} ${chalk.blue(message)}`);
             break;
         case 'w':
-            console.log(`${chalk.yellow.bold('WARN')} ${chalk.yellow(message)}`);
+            console.log(`${chalk.yellow.bold(`[WARN ${getTimestamp()  }]`)} ${chalk.yellow(message)}`);
             break;
         case 'e':
-            console.log(`${chalk.red.bold('ERR')} ${chalk.red(message)}`);
+            console.log(`${chalk.red.bold(`[ERR ${getTimestamp()  }]`)} ${chalk.red(message)}`);
             break;
         default:
             log('i', message); // Recursively call self and log with info
@@ -64,11 +71,11 @@ function log(type, message, stack = false, critical = false) {
             let stack = new Error().stack.split('\n');
             stack.shift();
             stack.forEach((item) => {
-                console.log(`${chalk.red.bold('ERR')} ${chalk.gray(item)}`);
+                console.log(`${chalk.red.bold(`[ERR ${getTimestamp()  }]`)} ${chalk.gray(item)}`);
             });
         }
         if (critical) {
-            console.log(`${chalk.red.bold('ERR')} ${chalk.red.bold('Process exiting due to error set as critical. There is likely additional logging output above.')}`);
+            console.log(`${chalk.red.bold(`[ERR ${getTimestamp()  }]`)} ${chalk.red.bold('Process exiting due to error set as critical. There is likely additional logging output above.')}`);
             process.exit(1);
         }
     }

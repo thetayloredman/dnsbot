@@ -53,8 +53,8 @@ exports.run = (client, message, args, log) => {
     // Parse flags
     let title = args.join(' ').split('-title ').slice(1);
     let ot = title;
-    title = title.join(' ').split('-description ')[0]
-    let description = ot.join(' ').split('-description ')[1]
+    title = title.join(' ').split('-description ')[0];
+    let description = ot.join(' ').split('-description ')[1];
     title.trim();
     description.trim();
 
@@ -71,12 +71,12 @@ exports.run = (client, message, args, log) => {
         .setTitle(title)
         .setDescription(description)
         .setColor('YELLOW')
-        .setAuthor('Announcement from ' + message.author.tag)
+        .setAuthor(`Announcement from ${  message.author.tag}`)
         .setFooter('Deep Network Security')
         .setTimestamp();
 
     if (ping) {
-        client.channels.cache.get(client.config.announceChannel).send('<@' + client.config.announceRole + '>')
+        client.channels.cache.get(client.config.announceChannel).send(`<@${  client.config.announceRole  }>`);
     }
     client.channels.cache.get(client.config.announceChannel).send(embed);
 

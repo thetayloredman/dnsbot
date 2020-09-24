@@ -65,9 +65,9 @@ module.exports.run = async (client, message, args, log) => {
     let e = false;
     try {
         if (code.includes('await') && !message.content.includes('\n'))
-            code = '( async () => {return ' + code + '})()';
+        {code = `( async () => {return ${  code  }})()`;}
         else if (code.includes('await') && message.content.includes('\n'))
-            code = '( async () => {' + code + '})()';
+        {code = `( async () => {${  code  }})()`;}
         response = await eval(code);
         if (typeof response !== 'string') {
             response = require('util').inspect(response, { depth: 3 });

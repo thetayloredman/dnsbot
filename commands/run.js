@@ -45,10 +45,7 @@ const https = require('https');
 const dotenv = require('dotenv');
 
 // Main runner
-exports.run = (client, message, args, log) => {
-    // comment below to enable beta command!
-    // return message.reply('You stumbled upon a wild **disabled command**! Try again later, or report this to `@BadBoyHaloCat#1826`.');
-
+exports.run = (client, message, args, log, err) => {
     function validateLang (lang) {
         let langs = {
             awk: ['awk'],
@@ -114,6 +111,10 @@ exports.run = (client, message, args, log) => {
         return keys[found]; // Poof
     }
 
+    if (!args[0]) {
+        return message.reply('Invalid usage!');
+    }
+
     let langName = validateLang(args[0].split('\n')[0]);
 
     if (!langName) {
@@ -148,5 +149,6 @@ exports.run = (client, message, args, log) => {
 
 // Config
 exports.config = {
-    description: 'Execute code.'
+    description: 'Execute code.',
+    enabled: false
 };

@@ -45,11 +45,12 @@ const https = require('https');
 const dotenv = require('dotenv');
 
 // Main runner
-exports.run = (client, message, args, log) => {
+exports.run = (client, message, args, log, err) => {
     // Command code
 };
 
 // Config
 exports.config = {
-    description: 'What a nice command description!'
+    description: 'What a nice command description!',
+    enabled: true
 };

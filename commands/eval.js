@@ -51,10 +51,10 @@ const https = require('https');
 const dotenv = require('dotenv');
 
 // Main runner
-module.exports.run = async (client, message, args, log) => {
+module.exports.run = async (client, message, args, log, err) => {
     if (message.author.id !== client.config.ownerId) {
         log('w', `${message.author.tag} tried to use eval!`);
-        return message.reply('You aren\'t the boss of me now!');
+        return err(message, '002');
     }
     const embed = new discord.MessageEmbed()
         .setFooter(`Eval command executed by ${message.author.username}`)
@@ -104,5 +104,6 @@ ${response}`);
 
 // Config
 exports.config = {
-    description: 'Evalulate code!\nRequires OWNER.'
+    description: 'Evalulate code!\nRequires OWNER.',
+    enabled: true
 };

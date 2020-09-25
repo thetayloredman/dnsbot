@@ -58,11 +58,11 @@ if (!process.env.token) {
     log('e', 'Environment variables were invalid. You need to provide "token".', true, true);
 }
 
-// Web init
-require('./web.js')();
-
 // Initialize client
 let client = new discord.Client();
+
+// Web init
+require('./web.js')(client);
 
 // Databases
 let logging = new database();
@@ -77,6 +77,50 @@ client.commandConfig = new enmap();
 client.config = require('./config.json');
 
 // Variables
+
+// Error code function
+function err (message, code) {
+    let codes = new Map([
+        [
+            '001',
+            {
+                message: 'Internal Error',
+                details: 'Something happened internally.',
+                reportable: true
+            }
+        ],
+        [
+            '002',
+            {
+                message: 'No Permission',
+                details: 'You don\'t have permission to do that!',
+                reportable: true
+            }
+        ]
+    ]);
+
+    if (!message) {
+        log('e', 'You didn\'t provide the <Message>!', true, true);
+        return;
+    }
+
+    if (!codes.get(code)) {
+        log('e', 'Unknown error code!', true);
+        err(message, '001');
+        return;
+    }
+
+    let codeData = codes.get(code);
+
+    let out = `ERROR \`${code}\` "${codeData.message}"\n${codeData.details}`;
+
+    if (codeData.reportable) {
+        out += `\nIf you believe this was a mistake / bug, please contact <@${client.config.ownerId}> and provide this information:`;
+        out += `\n\`\`\`\nERROR REPORT\nError Number: ${  code  }\nChannel Name / ID: ${  message.channel.name  } (${  message.channel.id  })\nMessage ID: ${  message.id  }\nMessage link: https://discordapp.com/channels/${  message.guild.id  }/${  message.channel.id  }/${  message.id  }\n\`\`\``;
+    }
+
+    message.reply(out);
+}
 
 // Heartbeat
 setInterval(() => {
@@ -122,7 +166,7 @@ client.on('ready', () => {
 
     heartbeat.run(client, log);
 
-    // Status reafreshes
+    // Status refreshes
     let statusId = 0;
     setInterval(() => {
         if (!client.config.statusArray[statusId]) {
@@ -165,8 +209,13 @@ client.on('message', (message) => {
         return log('i', `User ${message.author.tag} tried to run an unknown command: "${command}".`);
     }
     log('i', `Running command ${command} for user ${message.author.tag}`);
+    let config = client.commandConfig.get('commands', command);
+    if (!config.enabled) {
+        log('i', `${message.author.tag} tried to use a disabled command.`);
+        return message.reply('That command is **disabled**!');
+    }
     let commandrun = client.commands.get(command);
-    commandrun.run(client, message, args, log);
+    commandrun.run(client, message, args, log, err);
 });
 
 // Other logging events

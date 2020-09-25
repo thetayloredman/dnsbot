@@ -48,10 +48,8 @@ const dotenv = require('dotenv');
 const log = require('./log.js');
 
 module.exports = () => {
-    // Open server
-    const server = http.createServer((req, res) => {
+    let server = http.createServer((req, res) => {
         res.end('OK');
-        log('i', 'PINGHOST: Got ping!');
     });
     server.listen('8080');
 };

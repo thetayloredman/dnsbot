@@ -45,9 +45,9 @@ const https = require('https');
 const dotenv = require('dotenv');
 
 // Main runner
-exports.run = (client, message, args, log) => {
+exports.run = (client, message, args, log, err) => {
     if (!message.member.hasPermission('ADMINISTRATOR')) {
-        return message.reply('No permission!');
+        return err(message, '002');
     }
 
     // Parse flags
@@ -76,7 +76,7 @@ exports.run = (client, message, args, log) => {
         .setTimestamp();
 
     if (ping) {
-        client.channels.cache.get(client.config.announceChannel).send(`<@${  client.config.announceRole  }>`);
+        client.channels.cache.get(client.config.announceChannel).send(`<@&${  client.config.announceRole  }>`);
     }
     client.channels.cache.get(client.config.announceChannel).send(embed);
 
@@ -85,5 +85,6 @@ exports.run = (client, message, args, log) => {
 
 // Config
 exports.config = {
-    description: 'Make an announcement!'
+    description: 'Make an announcement!',
+    enabled: true
 };

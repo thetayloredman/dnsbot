@@ -43,15 +43,16 @@ const http = require('http');
 const https = require('https');
 
 // Main runner
-exports.run = (client, message, args, log) => {
+exports.run = (client, message, args, log, err) => {
     message.reply('Ping?').then((pingMessage) => {
         let ping = pingMessage.createdTimestamp - message.createdTimestamp;
         log('i', `Ping was ${  ping  } ms`);
-        pingMessage.edit(`<@${message.author.id}>, Pong! Ping was \`${ping}\` ms. Websocket ping was \`${client.ws.ping}\` ms.`);
+        pingMessage.edit(`<@${message.author.id}>, Ping was ${ping}ms. Websocket ping was ${client.ws.ping}ms.`);
     });
 };
 
 // Config
 exports.config = {
-    description: 'Check the bot\'s ping!'
+    description: 'Check the bot\'s ping!',
+    enabled: true
 };

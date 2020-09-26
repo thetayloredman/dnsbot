@@ -117,6 +117,12 @@
         ],
         "template-curly-spacing": [
             "off"
+        ],
+        "keyword-spacing": [
+            "warn"
+        ],
+        "space-infix-ops": [
+            "warn"
         ]
     }
 }

@@ -46,12 +46,40 @@ const dotenv = require('dotenv');
 
 // Middleware and such
 const cp = require('cookie-parser');
-const ejs=require('ejs');
+const ejs = require('ejs');
 // Import functions
 const log = require('./log.js');
 
 // Db thing
 const tokens = new database();
+
+// Functions
+function checkAuthCookies (cookies) {
+    let needed = [
+        'Authorization',
+        'DiscordID'
+    ];
+    let ok = true;
+    needed.forEach((cookie) => {
+        if (!ok) {return;}
+        if (!cookies.includes(cookie)) {ok = false;}
+    });
+    return ok; // Return the value.
+}
+function checkValidCookies (cookies) {
+    // Ensure there is a cookies db key
+    tokens.list().then((keys) => {
+        if (!keys.includes('tokens')) {
+            tokens.set('tokens', []);
+        }
+    });
+
+    // Now we can check it
+    if (!tokens.get('tokens').includes(cookies.Authorization)) {
+        return false;
+    }
+    return true; // Must be OK
+}
 
 module.exports = (client) => {
     const app = new express();
@@ -64,9 +92,24 @@ module.exports = (client) => {
         log('i', 'WEB: Listening at port 8080!');
     });
 
-    // Pages
+    // Pre-Auth pages
     app.get('/ping', (req, res) => { // Ping server
         res.end('OK');
         log('i', 'Got ping!');
+    });
+
+    // Auth check
+    app.use('/', (req, res, next) => {
+        let cookiesPresent = checkAuthCookies(req.cookies);
+        if (!cookiesPresent) {
+            res.redirect('/login');
+            return;
+        }
+
+        let cookiesValid = checkValidCookies(req.cookies);
+        if (!cookiesValid) {
+            res.redirect('/login');
+            return;
+        }
     });
 };

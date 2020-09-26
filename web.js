@@ -62,7 +62,7 @@ function checkAuthCookies (cookies) {
     let ok = true;
     needed.forEach((cookie) => {
         if (!ok) {return;}
-        if (!cookies.includes(cookie)) {ok = false;}
+        if (!cookies[cookie]) {ok = false;}
     });
     return ok; // Return the value.
 }
@@ -81,6 +81,13 @@ function checkValidCookies (cookies) {
     return true; // Must be OK
 }
 
+// Serve file
+function get (path) {
+    fs.readFile(path, 'utf-8', (err, contents) => {
+
+    })
+}
+
 module.exports = (client) => {
     const app = new express();
 
@@ -97,6 +104,8 @@ module.exports = (client) => {
         res.end('OK');
         log('i', 'Got ping!');
     });
+
+    app.get('/login')
 
     // Auth check
     app.use('/', (req, res, next) => {

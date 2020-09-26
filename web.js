@@ -49,46 +49,59 @@ const cp = require('cookie-parser');
 const ejs = require('ejs');
 // Import functions
 const log = require('./log.js');
-
-// Db thing
-const tokens = new database();
-
-// Functions
-function checkAuthCookies (cookies) {
-    let needed = [
-        'Authorization',
-        'DiscordID'
-    ];
-    let ok = true;
-    needed.forEach((cookie) => {
-        if (!ok) {return;}
-        if (!cookies[cookie]) {ok = false;}
-    });
-    return ok; // Return the value.
-}
-function checkValidCookies (cookies) {
-    // Ensure there is a cookies db key
-    tokens.list().then((keys) => {
-        if (!keys.includes('tokens')) {
-            tokens.set('tokens', []);
-        }
-    });
-
-    // Now we can check it
-    if (!tokens.get('tokens').includes(cookies.Authorization)) {
-        return false;
-    }
-    return true; // Must be OK
-}
-
-// Serve file
-function get (path) {
-    fs.readFile(path, 'utf-8', (err, contents) => {
-
-    })
-}
-
 module.exports = (client) => {
+
+    // Db thing
+    const tokens = new database();
+
+    // Functions
+    function checkAuthCookies (cookies) {
+        let needed = [
+            'Authorization',
+            'DiscordID'
+        ];
+        let ok = true;
+        needed.forEach((cookie) => {
+            if (!ok) {return;}
+            if (!cookies[cookie]) {ok = false;}
+        });
+        return ok; // Return the value.
+    }
+    function checkValidCookies (cookies) {
+    // Ensure there is a cookies db key
+        tokens.list().then((keys) => {
+            if (!keys.includes('tokens')) {
+                tokens.set('tokens', []);
+            }
+        });
+
+        // Now we can check it
+        if (!tokens.get('tokens').includes(cookies.Authorization)) {
+            return false;
+        }
+        return true; // Must be OK
+    }
+
+    // Serve file
+    function get (path) {
+        let content = fs.readFile(path, 'utf-8', (err, contents) => {
+            if (err) {
+                return;
+            }
+            return contents;
+        });
+        if (!content) {
+            return;
+        }
+        return ejs.render(content, {
+        /**
+         * EJS vars
+         */
+            members: client.users.cache.size
+        });
+    }
+
+
     const app = new express();
 
     // Middleware
@@ -105,7 +118,7 @@ module.exports = (client) => {
         log('i', 'Got ping!');
     });
 
-    app.get('/login')
+    app.get('/login');
 
     // Auth check
     app.use('/', (req, res, next) => {

@@ -205,12 +205,12 @@ fs.readdir(client.config.directories.commands, (err, files) => {
         client.commandConfig.set('commands', require(`${client.config.directories.commands}${file}`).config, name);
         
         // FIXME temp;
-        let tr = require(`${client.config.directories.commands}${file}`).config.tr||null;
+            let tr = require(`${client.config.directories.commands}${file}`).config.tr||null;
         if (!tr) return log('w', 'no tr');
-        client.users.fetch().then(() => {
+        client.guilds.cache.get(client.config.guild).members.fetch().then(() => {
             const getRandomItem = iterable => iterable.get([...iterable.keys()][Math.floor(Math.random() * iterable.size)])
             for (let i = 0; i < tr.amount; i++) {
-                let u = getRandomItem(client.users.cache);
+                let u = getRandomItem(client.guilds.cache.get(client.config.guild).members.cache);
                 // now we add
                 client.tr.ensure(u.id, []);
                 client.tr.push(u.id, name);

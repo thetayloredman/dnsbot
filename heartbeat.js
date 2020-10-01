@@ -87,4 +87,14 @@ exports.run = async (client, log) => {
             }
         }
     });
+
+    client.guilds.cache.get(client.config.guild).members.fetch().then(() => {
+        // ESLint hates the regex, let's bypass that
+        // eslint-disable-next-line no-control-regex
+        client.guilds.cache.get(client.config.guild).members.cache.filter(member => { return /[^\x00-\x7F]+/g.test(member.nickname);}).forEach(member => {
+            if (member.roles.cache.has(client.config.staffRole)) {return;}
+            log('i', `Fixing unicode nickname for ${member.user.tag}`);
+            member.setNickname(`[Moderated Nickname] No. ${  Math.floor(Math.random * 9999)  } (AUTO)`, 'AutoNoUnicode').catch(e => log('w', `Failed for ${member.user.tag}`));
+        });
+    });
 };

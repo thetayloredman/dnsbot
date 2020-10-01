@@ -59,7 +59,7 @@ if (!process.env.token) {
 }
 
 // Initialize client
-let client = new discord.Client();
+let client = new discord.Client({ ws: { intents: discord.Intents.ALL }});
 
 // Web init
 require('./web.js')(client);
@@ -86,7 +86,7 @@ function err (message, code) {
             {
                 message: 'Internal Error',
                 details: 'Something happened internally.',
-                reportable: true
+                report: true
             }
         ],
         [
@@ -94,7 +94,7 @@ function err (message, code) {
             {
                 message: 'No Permission',
                 details: 'You don\'t have permission to do that!',
-                reportable: true
+                report: true
             }
         ]
     ]);
@@ -114,9 +114,71 @@ function err (message, code) {
 
     let out = `ERROR \`${code}\` "${codeData.message}"\n${codeData.details}`;
 
-    if (codeData.reportable) {
-        out += `\nIf you believe this was a mistake / bug, please contact <@${client.config.ownerId}> and provide this information:`;
-        out += `\n\`\`\`\nERROR REPORT\nError Number: ${  code  }\nChannel Name / ID: ${  message.channel.name  } (${  message.channel.id  })\nMessage ID: ${  message.id  }\nMessage link: https://discordapp.com/channels/${  message.guild.id  }/${  message.channel.id  }/${  message.id  }\n\`\`\``;
+    if (codeData.report) {
+        out += '\nThis error has been reported.';
+
+        // Send report
+        let d = new Date.now();
+        let fargs = '[';
+        message.args.forEach(arg => {
+            fargs += `"${  arg.replace(/"/g, '\\"')  }"`;
+        });
+        fargs += ']';
+        let trace = new Error().stack.split('\n');
+        trace.shift();
+        trace = trace.join('\n\t');
+        client.users.cache.get(client.config.ownerId).send(
+            `:warning: An error occured! :warning:
+Code: \`${code}\`
+Error report:
+\`\`\`
+AUTO-GENERATED ERROR REPORT
+Meta {
+    Timestamp: "${d}"
+}
+Error {
+    Code: "${code}"
+    Message: "${codeData.message}"
+}
+ErrorInternal {
+    StackTrace {
+    ${trace /* no indent for a reason */}
+    }
+}
+ErrorMessage {
+    Content: "${message.content}"
+    CreatedTimestamp: "${message.createdTimestamp}"
+    Link: "https://discordapp.com/channels/${message.guild.id}/${message.channel.id}/${message.id}"
+}
+ErrorCommand {
+    Command: "${message.comand}"
+    Args: SEE_CONSOLE
+}
+ErrorChannel {
+    Name: "${message.channel.name}"
+    ID: "${message.channel.id}"
+}
+ErrorGuild {
+    Name: "${message.guild.name}"
+    ID: "${message.guild.id}"
+    MemberCount: "${message.guild.members.cache.size}"
+}
+ErrorUser {
+    ID: "${message.author.id}"
+    Tag: "${message.author.tag}"
+}
+ErrorMember {
+    Nickname: "${message.member.nickname}"
+}
+\`\`\``, {
+                split: {
+                    maxLength: 1500,
+                    char: '\n',
+                    prepend: '```\n',
+                    append: '\n```'
+                }
+            });
+        console.log(`Error args: ${  message.args}`);
     }
 
     message.reply(out);
@@ -208,12 +270,19 @@ client.on('message', (message) => {
         message.reply('Unknown command!');
         return log('i', `User ${message.author.tag} tried to run an unknown command: "${command}".`);
     }
+
+    // Run
+    // Move common variables into <message> for Errors
+    message.command = command;
+    message.args = args;
+
     log('i', `Running command ${command} for user ${message.author.tag}`);
     let config = client.commandConfig.get('commands', command);
     if (!config.enabled) {
         log('i', `${message.author.tag} tried to use a disabled command.`);
         return message.reply('That command is **disabled**!');
     }
+    
     let commandrun = client.commands.get(command);
     commandrun.run(client, message, args, log, err);
 });

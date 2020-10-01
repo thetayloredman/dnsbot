@@ -117,21 +117,4 @@ module.exports = (client) => {
         res.end('OK');
         log('i', 'Got ping!');
     });
-
-    app.get('/login');
-
-    // Auth check
-    app.use('/', (req, res, next) => {
-        let cookiesPresent = checkAuthCookies(req.cookies);
-        if (!cookiesPresent) {
-            res.redirect('/login');
-            return;
-        }
-
-        let cookiesValid = checkValidCookies(req.cookies);
-        if (!cookiesValid) {
-            res.redirect('/login');
-            return;
-        }
-    });
 };

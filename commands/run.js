@@ -150,5 +150,5 @@ exports.run = (client, message, args, log, err) => {
 // Config
 exports.config = {
     description: 'Execute code.',
-    enabled: false
+    enabled: true
 };

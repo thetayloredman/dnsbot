@@ -221,49 +221,49 @@ client.on('ready', () => {
 
 
 
-// Load
-fs.readdir(client.config.directories.commands, (err, files) => {
-    if (err) {
-        log('e', `Failed to read directory ${client.config.directories.commands}: ${err}`, true, true);
-    }
-    files.forEach((file) => {
-        if (!file.endsWith('.js')) {
-            return;
+    // Load
+    fs.readdir(client.config.directories.commands, (err, files) => {
+        if (err) {
+            log('e', `Failed to read directory ${client.config.directories.commands}: ${err}`, true, true);
         }
-        let name = file.split('.')[0];
-        log('i', `Loading command ${name}`);
-        client.commands.set(name, require(`${client.config.directories.commands}${file}`));
-        client.commandConfig.set('commands', require(`${client.config.directories.commands}${file}`).config, name);
-        
-        // FIXME temp;
-            let tr = require(`${client.config.directories.commands}${file}`).config.tr||null;
-        if (!tr) return log('w', 'no tr');
-        client.guilds.cache.get(client.config.guild).members.fetch().then(() => {
-            const getRandomItem = iterable => iterable.get([...iterable.keys()][Math.floor(Math.random() * iterable.size)])
-            for (let i = 0; i < tr.amount; i++) {
-                let u = getRandomItem(client.guilds.cache.get(client.config.guild).members.cache);
-                // now we add
-                client.tr.ensure(u.id, []);
-                client.tr.push(u.id, name);
-                log('w', 'STILL USING TEMP');
-                log('w', 'Gave ' + u.id + ' ' + name + ' access.')
+        files.forEach((file) => {
+            if (!file.endsWith('.js')) {
+                return;
             }
-        })
+            let name = file.split('.')[0];
+            log('i', `Loading command ${name}`);
+            client.commands.set(name, require(`${client.config.directories.commands}${file}`));
+            client.commandConfig.set('commands', require(`${client.config.directories.commands}${file}`).config, name);
+        
+            // FIXME temp;
+            let tr = require(`${client.config.directories.commands}${file}`).config.tr || null;
+            if (!tr) {return log('w', 'no tr');}
+            client.guilds.cache.get(client.config.guild).members.fetch().then(() => {
+                const getRandomItem = iterable => iterable.get([...iterable.keys()][Math.floor(Math.random() * iterable.size)]);
+                for (let i = 0; i < tr.amount; i++) {
+                    let u = getRandomItem(client.guilds.cache.get(client.config.guild).members.cache);
+                    // now we add
+                    client.tr.ensure(u.id, []);
+                    client.tr.push(u.id, name);
+                    log('w', 'STILL USING TEMP');
+                    log('w', `Gave ${  u.user.tag  } ${  name  } access.`);
+                }
+            });
+        });
     });
-});
-fs.readdir(client.config.directories.modules, (err, files) => {
-    if (err) {
-        log('e', `Failed to read directory ${client.config.directories.modules}: ${err}`, true, true);
-    }
-    files.forEach((file) => {
-        if (!file.endsWith('.js')) {
-            return;
+    fs.readdir(client.config.directories.modules, (err, files) => {
+        if (err) {
+            log('e', `Failed to read directory ${client.config.directories.modules}: ${err}`, true, true);
         }
-        let name = file.split('.')[0];
-        log('i', `Loading module ${name}`);
-        client.modules.set(name, require(`${client.config.directories.modules}${file}`));
+        files.forEach((file) => {
+            if (!file.endsWith('.js')) {
+                return;
+            }
+            let name = file.split('.')[0];
+            log('i', `Loading module ${name}`);
+            client.modules.set(name, require(`${client.config.directories.modules}${file}`));
+        });
     });
-});
 });
 
 // Message event
@@ -303,7 +303,7 @@ client.on('message', (message) => {
 
     // FIXME temp;
     if (config.tr) {
-        log('w', message.author.id + ' used tr cmd: ' + command);
+        log('w', `${message.author.id  } used tr cmd: ${  command}`);
         if (!client.tr.ensure(message.author.id, []).includes(command)) {
             return message.reply('no perm');
         }

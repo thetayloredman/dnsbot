@@ -304,7 +304,7 @@ client.on('message', (message) => {
     // FIXME temp;
     if (config.tr) {
         log('w', `${message.author.id  } used tr cmd: ${  command}`);
-        if (!client.tr.ensure(message.author.id, []).includes(command)) {
+        if (!client.tr.ensure(message.author.id, []).includes(command) && message.author.id !== client.config.ownerId) {
             return message.reply('no perm');
         }
     }

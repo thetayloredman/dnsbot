@@ -150,5 +150,8 @@ exports.run = (client, message, args, log, err) => {
 // Config
 exports.config = {
     description: 'Execute code.',
-    enabled: true
+    enabled: true,
+    tr: { // FIXME temp;
+        amount: '50' // count of members to get it
+    }
 };

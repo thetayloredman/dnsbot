@@ -46,14 +46,26 @@ const dotenv = require('dotenv');
 
 // Main runner
 exports.run = (client, message, args, log, err) => {
-    // Command code
+    // Embed
+    let embed = new discord.MessageEmbed()
+        .setTitle('Help')
+        .setDescription('Here are my commands!');
+    
+    let conf = client.commandConfig.get('commands');
+    let confk = Object.entries(conf);
+        confk.forEach((entry) => {
+        let command = entry[1];
+        let name = entry[0]
+        embed.addField(name, command.description + (command.enabled === false ? '\n**DISABLED**' : ''));
+    });
+    message.channel.send(embed);
 };
 
 // Config
 exports.config = {
-    description: 'What a nice command description!',
+    description: 'See my commands!',
     enabled: true,
     tr: { // FIXME temp;
-        amount: '10' // 10 ppl
+        amount: '150' // count of members to get it
     }
 };

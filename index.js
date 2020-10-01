@@ -190,6 +190,37 @@ setInterval(() => {
     heartbeat.run(client, log);
 }, client.config.heartbeatSeconds * 1000);
 
+// Ready event
+client.on('ready', () => {
+    log('i', `Client has logged in as ${client.user.tag} (${client.user.id}) with ${client.users.cache.size} users.`);
+
+    client.user.setActivity('bootup', {
+        type: 'WATCHING'
+    });
+
+    heartbeat.run(client, log);
+
+    // Status refreshes
+    let statusId = 0;
+    setInterval(() => {
+        if (!client.config.statusArray[statusId]) {
+            statusId = 0;
+        }
+        let status = client.config.statusArray[statusId];
+        let text = status[0];
+        client.config.statusFilters.forEach((filter) => {
+            text = eval(`text.replace(/${filter[0]}/g, ${eval(filter[1])})`);
+        });
+        let readable = status[1].toUpperCase() === 'PLAYING' ? 'Playing' : status[1].toUpperCase() === 'WATCHING' ? 'Watching' : status[1].toUpperCase() === 'LISTENING' ? 'Listening to' : 'Watching';
+        log('i', `Setting status to "${  chalk.white(readable)  } ${  chalk.white.bold(text)  }"`);
+        client.user.setActivity(text, {
+            type: status[1]
+        });
+        statusId++;
+    }, client.config.statusSeconds * 1000);
+
+
+
 // Load
 fs.readdir(client.config.directories.commands, (err, files) => {
     if (err) {
@@ -233,35 +264,6 @@ fs.readdir(client.config.directories.modules, (err, files) => {
         client.modules.set(name, require(`${client.config.directories.modules}${file}`));
     });
 });
-
-// Ready event
-client.on('ready', () => {
-    log('i', `Client has logged in as ${client.user.tag} (${client.user.id}) with ${client.users.cache.size} users.`);
-
-    client.user.setActivity('bootup', {
-        type: 'WATCHING'
-    });
-
-    heartbeat.run(client, log);
-
-    // Status refreshes
-    let statusId = 0;
-    setInterval(() => {
-        if (!client.config.statusArray[statusId]) {
-            statusId = 0;
-        }
-        let status = client.config.statusArray[statusId];
-        let text = status[0];
-        client.config.statusFilters.forEach((filter) => {
-            text = eval(`text.replace(/${filter[0]}/g, ${eval(filter[1])})`);
-        });
-        let readable = status[1].toUpperCase() === 'PLAYING' ? 'Playing' : status[1].toUpperCase() === 'WATCHING' ? 'Watching' : status[1].toUpperCase() === 'LISTENING' ? 'Listening to' : 'Watching';
-        log('i', `Setting status to "${  chalk.white(readable)  } ${  chalk.white.bold(text)  }"`);
-        client.user.setActivity(text, {
-            type: status[1]
-        });
-        statusId++;
-    }, client.config.statusSeconds * 1000);
 });
 
 // Message event

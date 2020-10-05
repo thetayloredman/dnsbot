@@ -65,13 +65,13 @@ exports.run = (client, message, args, log, err) => {
     // add
     user.forEach(i => {
         let c = client.commands.get(i);
-        embed.addField(`[AVAILABLE] ${i}`, c.description + '\n**Amount**:' + c.tr.amount + '/' + message.guild.memberCount);
+        embed.addField(`[AVAILABLE] ${i}`, c.config.description + '\n**Amount**: '  + c.config.tr.amount + '/' + message.guild.memberCount + '\n__**You have access to this command.**__');
     });
 
     other.forEach(i => {
         let c = client.commands.get(i);
         embed.addField(i, c.config.description + '\n**Amount**: ' + c.config.tr.amount + '/' + message.guild.memberCount);
-    })
+    });
 
     message.channel.send(embed);
 };

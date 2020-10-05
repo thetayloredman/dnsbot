@@ -44,40 +44,77 @@ const http = require('http');
 const https = require('https');
 const dotenv = require('dotenv');
 
-// Main runner
-exports.run = (client, message, args, log, err) => {
-    // Command code
-    let embed = new discord.MessageEmbed()
-        .setTitle('Early Access Commands')
-        .setDescription('This will allow you to see all early-access commands you do/don\'t have permission to view.')
-    
-    let all = [];
-    client.tr.forEach(i => {
-        i.forEach(e => {
-            if (!all.includes(e)) all.push(e);
+// Middleware and such
+const cp = require('cookie-parser');
+const ejs = require('ejs');
+// Import functions
+const log = require('./log.js');
+module.exports = (client) => {
+
+    // Db thing
+    const tokens = new database();
+
+    // Functions
+    function checkAuthCookies (cookies) {
+        let needed = [
+            'Authorization',
+            'DiscordID'
+        ];
+        let ok = true;
+        needed.forEach((cookie) => {
+            if (!ok) {return;}
+            if (!cookies[cookie]) {ok = false;}
         });
+        return ok; // Return the value.
+    }
+    function checkValidCookies (cookies) {
+    // Ensure there is a cookies db key
+        tokens.list().then((keys) => {
+            if (!keys.includes('tokens')) {
+                tokens.set('tokens', []);
+            }
+        });
+
+        // Now we can check it
+        if (!tokens.get('tokens').includes(cookies.Authorization)) {
+            return false;
+        }
+        return true; // Must be OK
+    }
+
+    // Serve file
+    function get (path) {
+        let content = fs.readFile(path, 'utf-8', (err, contents) => {
+            if (err) {
+                return;
+            }
+            return contents;
+        });
+        if (!content) {
+            return;
+        }
+        return ejs.render(content, {
+        /**
+         * EJS vars
+         */
+            members: client.users.cache.size
+        });
+    }
+
+
+    const app = new express();
+
+    // Middleware
+    app.use(cp());
+
+    // Listen
+    app.listen('8080', () => {
+        log('i', 'WEB: Listening at port 8080!');
     });
 
-    let user = client.tr.ensure(message.author.id, []);
-
-    let other = all.filter(i => !user.includes(i));
-
-    // add
-    user.forEach(i => {
-        let c = client.commands.get(i);
-        embed.addField(`[AVAILABLE] ${i}`, c.description + '\n**Amount**:' + c.tr.amount + '/' + message.guild.memberCount);
+    // Pre-Auth pages
+    app.get('/ping', (req, res) => { // Ping server
+        res.end('OK');
+        log('i', 'Got ping!');
     });
-
-    other.forEach(i => {
-        let c = client.commands.get(i);
-        embed.addField(i, c.config.description + '\n**Amount**: ' + c.config.tr.amount + '/' + message.guild.memberCount);
-    })
-
-    message.channel.send(embed);
-};
-
-// Config
-exports.config = {
-    description: 'View the early-access commands you have!',
-    enabled: true
 };

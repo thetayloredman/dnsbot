@@ -1,0 +1,521 @@
+commit c7d82a17e3c36c654cc0ad62f9646fdfcc870cf1
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Thu Oct 1 19:15:48 2020 +0000
+
+    qq
+
+commit 36ad8bda29c820c69a2f86c5b53ce299e95594f4
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Sat Sep 26 11:01:49 2020 -0700
+
+    dfgg
+
+commit 17f2786971ef1089696034d6bbce57738071eb5d
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Sat Sep 26 10:59:26 2020 -0700
+
+    aaa
+
+commit e2412d6a1141a0d3d66623d404b84b35dc6f097e
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Sat Sep 26 10:57:17 2020 -0700
+
+    Yay
+
+commit d1fa2e1fbead95ad85bd531fbd43917bc069978a
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Sat Sep 26 10:43:00 2020 -0700
+
+    Create header.ejs
+
+commit 05d64aca80476b151d13eab778aae25427af60f6
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Sat Sep 26 10:41:14 2020 -0700
+
+    aaa help
+
+commit 9da858bda9d417cf048a9c6569f21df5a2ca05af
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Sat Sep 26 10:36:41 2020 -0700
+
+    Update login.ejs
+
+commit 3b836d3884ae7708e471a9935a8c040142b72e0a
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Sat Sep 26 10:36:04 2020 -0700
+
+    Update login.ejs
+
+commit 3946454dfb984726e397234cf14de2e01466d403
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Sat Sep 26 10:34:41 2020 -0700
+
+    Update login.ejs
+
+commit f8b025264a5a0f47ebb83437cd52de6604086a2e
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Sat Sep 26 17:31:54 2020 +0000
+
+    wrrg
+
+commit 7456c4747813ef0b1e0750e16e946d4ee4c674ab
+Author: repl.it user <replituser@example.com>
+Date:   Fri Sep 25 22:18:09 2020 +0000
+
+    eee
+
+commit 3aacc6f662b6f6e1e949f6312d636b3d74edd82f
+Author: repl.it user <replituser@example.com>
+Date:   Fri Sep 25 22:16:21 2020 +0000
+
+    aA[sw8 e9sdfgrt7aeafgn rgh
+
+commit f6c7c004864cd2a8a4ec3b403e4c2d788bd48b95
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Thu Sep 24 17:44:04 2020 +0000
+
+    lots of changes
+
+commit bd5a2a2ede965fcd486f73bd3c0182ddbda60723
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Thu Sep 24 17:12:02 2020 +0000
+
+    rregSFG
+
+commit e001600a7c8a624c164667a5d5cbc25457cf9bd2
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Thu Sep 24 17:11:44 2020 +0000
+
+    patches
+
+commit c611fbc02c065d00be9c81b882eb8a78b8d991d5
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Wed Sep 23 20:13:14 2020 +0000
+
+    e
+
+commit 1d27861e279f1845cb960c665b727c80be89f868
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Wed Sep 23 17:57:46 2020 +0000
+
+    ESLint
+
+commit 3cb76d45b39f44d810f3ac24de3cbb9a030bc3dd
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Wed Sep 23 17:52:24 2020 +0000
+
+    aaa
+
+commit 878e28ec4740ac4fd0c4c4a17152e0328bd2be8e
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 22 19:07:04 2020 +0000
+
+    qaaaaa
+
+commit 7db8653d39f986345eafa3601df998688e668543
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 22 17:53:37 2020 +0000
+
+    AAAAA
+
+commit 81de6b2910275deb37feda0f5be4798eeddd4434
+Merge: 29da616 493032b
+Author: repl.it user <replituser@example.com>
+Date:   Mon Sep 21 21:33:25 2020 +0000
+
+    merge
+
+commit 29da616e3950a8495a304363de2092e2699e5368
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 21:32:22 2020 +0000
+
+    ahhh
+
+commit 493032b1fc00b59af70be334e1c431f7778fa2c3
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 14:10:05 2020 -0700
+
+    Update build.sh
+
+commit 295080f223bdd278347327c3a9a82668a4dd2211
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 20:53:41 2020 +0000
+
+    a few fixes
+
+commit f58ca75e62712d8e6a7796170c08b9c86229ab60
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 19:54:06 2020 +0000
+
+    r
+
+commit 3ef8f744e41c60e7855b22f37de80a44028acfaa
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 19:33:24 2020 +0000
+
+    yeet
+
+commit 5d8411fdd15df0e160fc60b7a61449d2dc12bcb2
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 19:17:30 2020 +0000
+
+    fix2
+
+commit 6354bafae816071562b0cf6a05592d34db06d07f
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 19:15:08 2020 +0000
+
+    fix
+
+commit 03325262d6219b9becdddbcba832d2b6034c8a07
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 19:03:00 2020 +0000
+
+    e
+
+commit 73e96e2be6021873eaa7fccb23cd5ee83ebe5bbd
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 18:58:38 2020 +0000
+
+    eee
+
+commit 840fa6399176ec096bd5fe463c8ebcf895dceece
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 18:00:19 2020 +0000
+
+    patch build
+
+commit 060d683805fe9daf9a50b05ee4ad1a2fdb51d020
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 10:55:08 2020 -0700
+
+    Update build.sh
+
+commit cff52ee2d3ddce2013a864771ea6f670466277e3
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 10:51:10 2020 -0700
+
+    Update start.sh
+
+commit 3716d6e4b0aa3f95bd0936be4a34990a2cc7d4f4
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 10:48:39 2020 -0700
+
+    Update package.json
+
+commit 57b9bf7b904936a7db8a4d2e56f7354880af505a
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 10:48:13 2020 -0700
+
+    Create start.sh
+
+commit 552e48f0964c2345c19a4aa753fc2d8ffda069b2
+Merge: 2875323 d19387c
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 10:46:17 2020 -0700
+
+    Merge branch 'master' of https://github.com/thetayloredman/dnsbot
+
+commit 287532344907d9a452f8432554708555c0a73f87
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 10:46:10 2020 -0700
+
+    Update .gitignore
+
+commit d19387cabd026925c2d3ac0ef1ddfd62167f5650
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 17:46:08 2020 +0000
+
+    Build
+
+commit 2dfc14028e63c070a53561d174dff88e448e04af
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 17:40:44 2020 +0000
+
+    Build
+
+commit 5ad74f733dfbee4d8060c8a8a0ea1bd4564fb971
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 16:01:59 2020 +0000
+
+    nothing
+
+commit 1bb3683bbc93046b9d34d19c2b6ac4e4ed1726a1
+Merge: 1f238c1 5b480ac
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 08:17:34 2020 -0700
+
+    Merge pull request #1 from thetayloredman/dependabot/npm_and_yarn/enmap-5.8.0
+    
+    Bump enmap from 5.7.3 to 5.8.0
+
+commit 1f238c13d4667ff93d8a7c242fe5da9997024181
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Mon Sep 21 15:16:34 2020 +0000
+
+    aaa
+
+commit 5b480ac683a1edc4013801775fe0760b042d40e4
+Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+Date:   Mon Sep 21 06:47:25 2020 +0000
+
+    Bump enmap from 5.7.3 to 5.8.0
+    
+    Bumps [enmap](https://github.com/eslachance/enmap) from 5.7.3 to 5.8.0.
+    - [Release notes](https://github.com/eslachance/enmap/releases)
+    - [Commits](https://github.com/eslachance/enmap/commits)
+    
+    Signed-off-by: dependabot[bot] <support@github.com>
+
+commit 500189fa0a0778d85d4a687c4791be245850cafc
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Wed Sep 16 12:58:26 2020 -0700
+
+    Remove node modules from pushes
+
+commit 66f9ce93b1d288f1f2b88f08f26b6f92d4b5cd2a
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Wed Sep 16 12:56:19 2020 -0700
+
+    UPDATE ALL DEPENDENCIES - DO NOT REVERT THIS COMMIT
+    
+    [!!!] [!!!] [!!!] [!!!] [!!!]
+    DO NOT REVERT THIS COMMIT
+    THIS COUNTERS A PREVIOUS TEST COMMIT
+    ALL DEPENDENCIES PRE-THIS COMMIT ARE --NOT SAFE FOR USE--
+    THIS COMMIT REVERTS THAT
+    DO NOT REVERT THIS COMMIT!
+    REVERTING CAN CAUSE:
+    [-] Depreciation
+    [-] Regex DoS ATTACK
+    !!! JUST DON'T REVERT THIS !!!
+    DO NOT REVERT THIS COMMIT!
+    [!!!] [!!!] [!!!] [!!!] [!!!]
+
+commit bea5554c16efdf9ab0f1e0e409b5f74f73c405cd
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Wed Sep 16 12:08:23 2020 -0700
+
+    e
+
+commit 344816d5c76e4745522ee194a641470bba2aa9d1
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Wed Sep 16 12:04:58 2020 -0700
+
+    Remove useless devdep
+
+commit fa28bd32c466476aa0e148089872e7a3c2b73948
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Wed Sep 16 12:03:43 2020 -0700
+
+    Make it all outdated lol
+
+commit 2320af4d1cbe90b0a42f74a57f24b1467a88f0e0
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Wed Sep 16 12:01:23 2020 -0700
+
+    lmao
+
+commit bf91e7062fa427c59b83875327c38cb24a280347
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Wed Sep 16 11:57:13 2020 -0700
+
+    E lol
+
+commit 485e2f19b976116a964d10ce0e3c689b4626d944
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Wed Sep 16 11:51:56 2020 -0700
+
+    Useless REEEEE
+
+commit 74dfa7b6844d9a0b8f78b24a081b21d7fbd4327a
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 18:25:17 2020 -0700
+
+    l
+
+commit 48e55653acfffdb177a01c017148af83f8563e3b
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 18:00:18 2020 -0700
+
+    Lol
+
+commit e4c73af7f166d3a7ccb81fc9efc6f1120de1f9c6
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 17:37:44 2020 -0700
+
+    E lol
+
+commit 4e82c73f46820aba2e7d9dc1dd739ade15c8434e
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 16:00:17 2020 -0700
+
+    E lol
+
+commit 194b702f4e9cd85cafe89435f456ac3cda79d340
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 15:44:16 2020 -0700
+
+    Works now
+
+commit 47e8f14d5f42afd5bb4ba7496dfc4323d0c003f2
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 15:43:23 2020 -0700
+
+    Phew
+
+commit 048b8a40ad44ba9d74aad0e3c3da237d1b9cf98a
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 15:37:22 2020 -0700
+
+    E lol
+
+commit 2129a535c9692b012903406c180557cec39ac50a
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 15:33:04 2020 -0700
+
+    Headers
+
+commit bcb568c8ad3f30598d814efb05740becf31deab8
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 15:24:59 2020 -0700
+
+    Lol
+
+commit 020ac0b6146ad099478e76ade7b603155646fd7b
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 15:21:30 2020 -0700
+
+    This took a WHILE lol
+
+commit 5c46c1af3d19d36a6372727c02fc67c0e85cef3d
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 15:17:15 2020 -0700
+
+    Lol i suck
+
+commit 4f53e8cc4defbd2b1803704ba94efbd0b635b9b1
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 15:16:29 2020 -0700
+
+    Update enmap.sqlite-shm
+
+commit 947e0276ef11432504763b502aca4dc18387f552
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 15:16:13 2020 -0700
+
+    Works
+
+commit 5acaaa4f3f54d87f07660942d24edabefd1e0346
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 15:15:57 2020 -0700
+
+    E
+
+commit bce6a89cfd8b98c7f6db5e7a24453f4f80349f1a
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 15:02:00 2020 -0700
+
+    Useless DB
+
+commit 397a80ee271dd69484be64c70bbe119b40de1069
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 15:01:48 2020 -0700
+
+    Color changes
+
+commit 373bf7638234bd48a11d067ded43c87ba6fee4be
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 14:58:52 2020 -0700
+
+    Typos
+
+commit 836cf37f4756d547e35c5845c2e4cfed2ec0ccf4
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 14:58:18 2020 -0700
+
+    Log
+
+commit ad693b916068634edc375244abbd6dd0d53992ac
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 14:32:57 2020 -0700
+
+    Patch
+
+commit e5bd385887b32500f3f6d8f87c85d18f17d43bdd
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:59:50 2020 -0700
+
+    Update log.js
+
+commit 47967dfd6d4d1046c92da18c0aac45400270e9c2
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:59:46 2020 -0700
+
+    Create log.js
+
+commit 334bdba6e9c07933c85bd1f2f01d59b54ebcc41d
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:58:56 2020 -0700
+
+    Update index.js
+
+commit 87e4d2d261e7ea101411bcbcc919787052696ad4
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:58:54 2020 -0700
+
+    Update header.js
+
+commit ba7b983c2186455941eae03d98f297494ec1daea
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:56:18 2020 -0700
+
+    Create dependabot.yml
+
+commit 31f8ff08468e304e581dfa7d5bdceae8f7487914
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:55:01 2020 -0700
+
+    ESLint
+
+commit ceb1dea239a617183b70abbdd4517fc9f5a27f6a
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:54:52 2020 -0700
+
+    New stuff lol
+
+commit efdcb6aa9773e3364f39202acc7914218efe247a
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:53:16 2020 -0700
+
+    Perms
+
+commit 5f4521441f93bfa60d9370a505240339af593c88
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:50:34 2020 -0700
+
+    Module core
+
+commit dfb359f8e7a5b92aff18af57457b39935fdcfaa4
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:48:48 2020 -0700
+
+    Licence and header
+
+commit b405e160634239ebde362414549f39d0cbbba897
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:40:48 2020 -0700
+
+    Modules
+
+commit c828818a73502f1d97858518826a7e9b430365e2
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:37:51 2020 -0700
+
+    Create package.json
+
+commit cec9886ab33c919c33e6f0e50cfc85cc924a89a7
+Author: thetayloredman <nutdriver716@gmail.com>
+Date:   Tue Sep 15 12:37:01 2020 -0700
+
+    Initial commit

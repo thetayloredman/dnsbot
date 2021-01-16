@@ -46,38 +46,11 @@ const dotenv = require('dotenv');
 
 // Main runner
 exports.run = (client, message, args, log, err) => {
-    // Command code
-    let embed = new discord.MessageEmbed()
-        .setTitle('Early Access Commands')
-        .setDescription('This will allow you to see all early-access commands you do/don\'t have permission to view.')
-    
-    let all = [];
-    client.tr.forEach(i => {
-        i.forEach(e => {
-            if (!all.includes(e)) all.push(e);
-        });
-    });
-
-    let user = client.tr.ensure(message.author.id, []);
-
-    let other = all.filter(i => !user.includes(i));
-
-    // add
-    user.forEach(i => {
-        let c = client.commands.get(i);
-        embed.addField(`[AVAILABLE] ${i}`, c.config.description + '\n**Amount**: ' + c.config.tr.amount + '/' + message.guild.memberCount);
-    });
-
-    other.forEach(i => {
-        let c = client.commands.get(i);
-        embed.addField(i, c.config.description + '\n**Amount**: ' + c.config.tr.amount + '/' + message.guild.memberCount);
-    })
-
-    message.channel.send(embed);
+    message.reply('You asked for it, here\'s my source code: https://repl.it/@thetayloredman/dnsbot');
 };
 
 // Config
 exports.config = {
-    description: 'View the early-access commands you have!',
+    description: 'Get a link to my source!',
     enabled: true
 };
